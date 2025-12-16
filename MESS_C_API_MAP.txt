@@ -1,0 +1,110 @@
+MESS C BACKEND API SURFACE MAP
+==============================
+
+Base URL:
+- /api/v1
+
+--------------------------------------------------
+Service Root
+--------------------------------------------------
+GET /
+  → Health/root check
+  → { ok: true, service: "mess-back" }
+
+--------------------------------------------------
+Auth
+--------------------------------------------------
+POST   /api/v1/auth/login
+POST   /api/v1/auth/logout
+GET    /api/v1/auth/me
+
+--------------------------------------------------
+Dashboard / Health
+--------------------------------------------------
+GET    /api/v1/health
+
+--------------------------------------------------
+Guests
+--------------------------------------------------
+GET    /api/v1/guests
+GET    /api/v1/guests/{guest_id}          (guest_id = int)
+POST   /api/v1/guests
+PUT    /api/v1/guests/{guest_id}
+PATCH  /api/v1/guests/{guest_id}
+
+--------------------------------------------------
+Guest Photos
+--------------------------------------------------
+GET    /api/v1/guests/{guest_id}/photos
+POST   /api/v1/guests/{guest_id}/photos
+GET    /api/v1/guest-photos/{photo_id}
+PATCH  /api/v1/guest-photos/{photo_id}
+DELETE /api/v1/guest-photos/{photo_id}
+
+--------------------------------------------------
+Reservations
+--------------------------------------------------
+GET    /api/v1/reservations
+POST   /api/v1/reservations
+PUT    /api/v1/reservations/{reservation_id}
+
+--------------------------------------------------
+Reservation Rooms
+--------------------------------------------------
+GET    /api/v1/reservation-rooms?reservation_id={uuid}
+POST   /api/v1/reservations/{reservation_id}/rooms
+PUT    /api/v1/reservation-rooms/{rr_id}
+
+--------------------------------------------------
+Folios
+--------------------------------------------------
+GET    /api/v1/folios?reservation_id={uuid}
+POST   /api/v1/folios
+PUT    /api/v1/folios/{folio_id}
+
+--------------------------------------------------
+Folio Items
+--------------------------------------------------
+GET    /api/v1/folios/{folio_id}/items
+POST   /api/v1/folios/{folio_id}/items
+PUT    /api/v1/folio-items/{item_id}
+
+--------------------------------------------------
+Payments
+--------------------------------------------------
+GET    /api/v1/folios/{folio_id}/payments
+POST   /api/v1/folios/{folio_id}/payments
+
+--------------------------------------------------
+Inventory
+--------------------------------------------------
+Buildings
+GET    /api/v1/buildings
+POST   /api/v1/buildings
+PUT    /api/v1/buildings/{building_id}
+
+Room Types
+GET    /api/v1/room-types
+POST   /api/v1/room-types
+PUT    /api/v1/room-types/{room_type_id}
+
+Rooms
+GET    /api/v1/rooms
+POST   /api/v1/rooms
+PUT    /api/v1/rooms/{room_id}
+
+--------------------------------------------------
+Stays
+--------------------------------------------------
+POST   /api/v1/stays
+POST   /api/v1/stays/{reservation_room_id}/check-in
+POST   /api/v1/stays/{reservation_room_id}/check-out
+PATCH  /api/v1/stays/{stay_id}
+
+--------------------------------------------------
+Users (Admin only)
+--------------------------------------------------
+GET    /api/v1/users
+PUT    /api/v1/users/{user_id}
+
+==================================================

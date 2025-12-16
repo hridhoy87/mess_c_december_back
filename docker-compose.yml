@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:16
+    container_name: messc-postgres
+    environment:
+      POSTGRES_USER: messc
+      POSTGRES_PASSWORD: messc_pass
+      POSTGRES_DB: messc
+    ports:
+      - "4432:5432"
+    volumes:
+      - messc_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U messc -d messc"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  messc_pgdata:
