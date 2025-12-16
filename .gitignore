@@ -1,0 +1,5 @@
+.env
+.mess-back-env/
+__pycache__/
+*.pyc
+*.log
