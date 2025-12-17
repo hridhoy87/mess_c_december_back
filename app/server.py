@@ -1,8 +1,25 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from app.api.v1 import routers_stay, routes_auth, routes_dashboard, routes_folios, routes_guest_photos, routes_guests, routes_payments, routes_reservation_rooms, routes_reservations, routes_rooms, routes_users
 
 def create_app() -> FastAPI:
-    app = FastAPI(title="Mess C Backend", version="1.0.0")
+    app = FastAPI(title="mess-back", version="1.0.0")
+
+    allow_origins = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "https://mess-c-december.vercel.app",
+    ]
+
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=allow_origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],  # includes Authorization, Content-Type
+        expose_headers=["set-cookie"],  # helpful for debugging
+    )
 
     @app.get("/")
     def root():
